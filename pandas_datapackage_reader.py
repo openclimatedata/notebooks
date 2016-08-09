@@ -44,6 +44,8 @@ def read_datapackage(url_or_path, resource_name=None):
         int_columns = []
 
         csv_path = resource.remote_data_path or resource.local_data_path
+        if not csv_path.endswith(".csv"):
+            continue
 
         if "primaryKey" in descriptor["schema"]:
             index_col = descriptor["schema"]["primaryKey"]
