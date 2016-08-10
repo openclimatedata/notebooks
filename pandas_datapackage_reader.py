@@ -72,7 +72,7 @@ def read_datapackage(url_or_path, resource_name=None):
             index_col = descriptor["schema"]["primaryKey"]
 
         for column in descriptor["schema"]["fields"]:
-            if column["type"] == "int":
+            if column["type"] == "integer":
                 int_columns.append(column["name"])
             elif column["type"] == "date":
                 parse_dates.append(column["name"])
