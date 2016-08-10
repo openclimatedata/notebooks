@@ -57,6 +57,7 @@ def read_datapackage(url_or_path, resource_name=None):
             name = descriptor["name"]
         else:
             name = str(idx)
+
         index_col = None
         converters = {}
         parse_dates = []
@@ -71,7 +72,7 @@ def read_datapackage(url_or_path, resource_name=None):
             index_col = descriptor["schema"]["primaryKey"]
 
         for column in descriptor["schema"]["fields"]:
-            if column["type"] == "integer":
+            if column["type"] == "integer" and column["name"] not in index_col:
                 int_columns.append(column["name"])
             elif column["type"] == "date":
                 parse_dates.append(column["name"])
