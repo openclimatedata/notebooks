@@ -9,7 +9,28 @@ from datapackage import DataPackage
 
 def read_datapackage(url_or_path, resource_name=None):
     """
-    TODO
+    Read tabular CSV files from data packages into DataFrames.
+
+    Parameters:
+    -----------
+    path_or_url: string
+        Local path or URL of a data package. For GitHub URLs the repository can
+        be used.
+    resource_name: string or list of strings
+        Name or names of resources to read. Lists of strings are used to
+        request multiple resources.
+
+    Notes:
+    ------
+    Columns of type "integer" with missing values are converted to "object" as
+    integer columns in Pandas do not support missing values.
+
+    Returns
+    -------
+    data_frames : DataFrame or Dict of DataFrames
+        DataFrame(s) of the passed in Data Package. See notes in resource_name
+        argument for more information on when a Dict of Dataframes is returned.
+
     """
     if os.path.exists(url_or_path):
         if not url_or_path.endswith("datapackage.json"):
