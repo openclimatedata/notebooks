@@ -32,13 +32,12 @@ def read_datapackage(url_or_path, resource_name=None):
         argument for more information on when a Dict of Dataframes is returned.
 
     """
-    if os.path.exists(url_or_path):
-        if not url_or_path.endswith("datapackage.json"):
-            url_or_path = os.path.join(url_or_path, "datapackage.json")
-    elif url_or_path.startswith("https://github.com/"):
+    if url_or_path.startswith("https://github.com/"):
         url_or_path = "https://raw.githubusercontent.com/" + \
                        url_or_path.split("https://github.com/")[1] +\
                        "/master/datapackage.json"
+    elif not url_or_path.endswith("datapackage.json"):
+        url_or_path = os.path.join(url_or_path, "datapackage.json")
 
     dp = DataPackage(url_or_path)
 
