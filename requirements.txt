@@ -1,4 +1,4 @@
-pandas-datapackage-reader
+pandas-datapackage-reader>=0.6.0
 countrygroups
 notebook
 matplotlib
